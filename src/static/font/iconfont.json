@@ -1,0 +1,142 @@
+{
+  "id": "4546194",
+  "name": "jh-mp-web",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "777843",
+      "name": "赞",
+      "font_class": "icon",
+      "unicode": "e651",
+      "unicode_decimal": 58961
+    },
+    {
+      "icon_id": "1684595",
+      "name": "王冠",
+      "font_class": "wangguan2",
+      "unicode": "e637",
+      "unicode_decimal": 58935
+    },
+    {
+      "icon_id": "1840047",
+      "name": "哭-1",
+      "font_class": "ku-",
+      "unicode": "e6e3",
+      "unicode_decimal": 59107
+    },
+    {
+      "icon_id": "5950866",
+      "name": "哭脸",
+      "font_class": "kulian",
+      "unicode": "e634",
+      "unicode_decimal": 58932
+    },
+    {
+      "icon_id": "9024868",
+      "name": "谁是卧底",
+      "font_class": "u___fm__gp_-copy",
+      "unicode": "e602",
+      "unicode_decimal": 58882
+    },
+    {
+      "icon_id": "11354699",
+      "name": "MVP",
+      "font_class": "MVP",
+      "unicode": "e677",
+      "unicode_decimal": 58999
+    },
+    {
+      "icon_id": "12002332",
+      "name": "MVP",
+      "font_class": "MVP1",
+      "unicode": "e664",
+      "unicode_decimal": 58980
+    },
+    {
+      "icon_id": "18788160",
+      "name": "可怜",
+      "font_class": "kelian",
+      "unicode": "e606",
+      "unicode_decimal": 58886
+    },
+    {
+      "icon_id": "10268585",
+      "name": "身份认证",
+      "font_class": "shenfenrenzheng",
+      "unicode": "e682",
+      "unicode_decimal": 59010
+    },
+    {
+      "icon_id": "10268863",
+      "name": "关于我们",
+      "font_class": "guanyuwomen",
+      "unicode": "e691",
+      "unicode_decimal": 59025
+    },
+    {
+      "icon_id": "16921558",
+      "name": "设置",
+      "font_class": "shezhi",
+      "unicode": "e7eb",
+      "unicode_decimal": 59371
+    },
+    {
+      "icon_id": "11029671",
+      "name": "人员",
+      "font_class": "renyuan",
+      "unicode": "e622",
+      "unicode_decimal": 58914
+    },
+    {
+      "icon_id": "14658638",
+      "name": "我的",
+      "font_class": "wode",
+      "unicode": "e60b",
+      "unicode_decimal": 58891
+    },
+    {
+      "icon_id": "7588116",
+      "name": "统计图",
+      "font_class": "tongjitu",
+      "unicode": "e623",
+      "unicode_decimal": 58915
+    },
+    {
+      "icon_id": "6548538",
+      "name": "进入",
+      "font_class": "jinru",
+      "unicode": "e657",
+      "unicode_decimal": 58967
+    },
+    {
+      "icon_id": "2217015",
+      "name": "王冠",
+      "font_class": "wangguan",
+      "unicode": "e60f",
+      "unicode_decimal": 58895
+    },
+    {
+      "icon_id": "8729992",
+      "name": "王冠1",
+      "font_class": "wangguan1",
+      "unicode": "e607",
+      "unicode_decimal": 58887
+    },
+    {
+      "icon_id": "17159760",
+      "name": "对战",
+      "font_class": "duizhan-jian-tianchong",
+      "unicode": "e736",
+      "unicode_decimal": 59190
+    },
+    {
+      "icon_id": "1646232",
+      "name": "赛事",
+      "font_class": "saishi",
+      "unicode": "e611",
+      "unicode_decimal": 58897
+    }
+  ]
+}

@@ -1,0 +1,120 @@
+.battle-wrapper {
+  display: flex;
+  height: 100vh;
+  flex-direction: column;
+  overflow: hidden;
+  .u-subsection {
+    flex-shrink: 0;
+  }
+  .overview-wrapper, .rank-wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+  .rank-wrapper {
+    .header {
+      display: flex;
+      height: 40px;
+      line-height: 40px;
+      position: relative;
+      font-size: 26rpx;
+      color: #606266;
+      text-align: center;
+      .hd-1 {
+        flex: none;
+        width: 150rpx;
+        text-align: center;
+      }
+      .hd-2 {
+        margin-left: 80rpx;
+        flex: 0.4;
+        width: 40%;
+      }
+      .hd-3 {
+        flex: 0.6;
+        width: 60%;
+      }
+      .hd-2, .hd-3 {
+        .u-dropdown {
+          position: static;
+        }
+      }
+    }
+    .container {
+      flex: 1;
+      width: 100%;
+      display: flex;
+      overflow: hidden;
+      >.cnt-l {
+        width: 150rpx;
+        background-color: #eeeeef;
+        flex: none;
+        .dimension-item {
+          height: 80rpx;
+          line-height: 80rpx;
+          font-size: 24rpx;
+          text-align: center;
+          color: #666;
+          &.active {
+            background-color: $primary-color;
+            color: #fff;
+            border-radius: 4px;
+            box-shadow: rgba(0,0,0,0.24) 0px 3px 8px;
+          }
+        }
+      }
+      >.cnt-r {
+        flex: 1;
+        .list-item {
+          display: flex;
+          flex-wrap: nowrap;
+          padding: 12px 0;
+          font-size: 26rpx;
+          line-height: 32rpx;
+          .td1 {
+            flex: none;
+            width: 60rpx;
+            padding-left: 20rpx;
+            font-size: 28rpx;
+            font-weight: bold;
+            color: #9cbdd6;
+            &.first {
+              color:#ffa200;
+              font-size: 30rpx;
+            }
+            &.second {
+              color:#ff4b4b;
+              font-size: 30rpx;
+            }
+            &.third {
+              color:#f158ffe8;
+              font-size: 30rpx;
+            }
+          }
+          .td2 {
+            display: flex;
+            flex: 0.4;
+            width: 40%;
+            color: $primary-color;
+          }
+          .td3 {
+            flex: 0.60;
+            width: 60%;
+            font-size: 30rpx;
+            font-weight: bold;
+            text-align: center;
+            letter-spacing: 2rpx;
+          }
+          &.tag-item {
+            .td3 {
+              text-align: left;
+              font-size: 24rpx;
+              font-weight: normal;
+            }
+          }
+        }
+      }
+    }
+  }
+}
