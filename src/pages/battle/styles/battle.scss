@@ -79,24 +79,46 @@
             font-size: 28rpx;
             font-weight: bold;
             color: #9cbdd6;
-            &.first {
-              color:#ffa200;
-              font-size: 30rpx;
-            }
-            &.second {
-              color:#ff4b4b;
-              font-size: 30rpx;
-            }
-            &.third {
-              color:#f158ffe8;
-              font-size: 30rpx;
-            }
           }
           .td2 {
             display: flex;
             flex: 0.4;
             width: 40%;
             color: $primary-color;
+            .icon-jinru {
+              position: relative;
+              height: 32rpx;
+              line-height: 32rpx;
+              font-size: 22rpx;
+              margin: 0 6rpx;
+              color: $primary-color;
+              -webkit-text-fill-color: $primary-color;
+              &::before {
+                position: absolute;
+                top: 0;
+                left: 0;
+
+              }
+            }
+            .mjs, .ctz {
+              position: relative;
+              width: 56rpx;
+              height: 26rpx;
+              line-height: 26rpx;
+              margin-left: 16rpx;
+              margin-top: 5rpx;
+              border-radius: 8rpx;
+              text-align: center;
+              font-size: 20rpx;
+              color: #fff;
+              -webkit-text-fill-color: #fff;
+            }
+            .ctz {
+              background-image: linear-gradient(90deg, #d984fd, #f0b5f8);
+            }
+            .mjs {
+              background-image: linear-gradient(90deg, #aaf9f9, #7dfcfc);
+            }
           }
           .td3 {
             flex: 0.60;
@@ -105,6 +127,7 @@
             font-weight: bold;
             text-align: center;
             letter-spacing: 2rpx;
+            color: #666;
           }
           &.tag-item {
             .td3 {
@@ -113,8 +136,58 @@
               font-weight: normal;
             }
           }
+          @keyframes gradientText {
+            0% {
+                background-position: 0;
+            }
+            100% {
+                background-position: 28000px;
+            }
+          }
+          @mixin text-color-bg {
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-size: auto;
+          }
+          &.first {
+            .td1, .td2, .td3 {
+              background: linear-gradient(30deg, #32c5ff 25%, #b620e0 50%, #f7b500 75%, #20e050 100%);
+              @include text-color-bg;
+            }
+            .td1, .td3 {
+              font-size: 30rpx;
+            }
+            .td2, .td3 {
+              animation: gradientText 300s infinite linear;
+              -webkit-animation: gradientText 300s infinite linear;
+            }
+          }
+          &.second {
+            .td1, .td2, .td3 {
+              color: transparent;
+              background: -webkit-linear-gradient(30deg, #ff327d 25%, #ef84ed 50%, #f78800 75%, #e020d3 100%);
+              @include text-color-bg;
+            }
+            .td1, .td3 {
+              font-size: 30rpx;
+            }
+          }
+          &.third {
+            .td1, .td2, .td3 {
+              color: transparent;
+              background: -webkit-linear-gradient(30deg, #ffb032 25%, #ee8637 50%, #ddb0f5 75%, #9ce1ef 100%);
+              @include text-color-bg;
+            }
+            .td1, .td3 {
+              font-size: 30rpx;
+            }
+          }
         }
       }
+    }
+    .tags {
+      display: inline-flex;
     }
   }
 }

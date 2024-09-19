@@ -1,25 +1,25 @@
 <template>
   <navigator :url="`/pages/battle/battle?battleId=${datas.id}`">
     <view class="battle-list-item">
-      <view class="time fs-12">{{ datas.startTime }} - {{ datas.endTime }}</view>
+      <view class="time">{{ datas.startTime }} - {{ datas.endTime }}</view>
       <view class="score-box">
         <view class=lt>
-          <view class="name-ctz fs-10">
+          <view class="name-ctz">
             <text>CTZ</text>
             <icon v-if="datas.ctz.k > datas.mjs.k" class="iconfont icon-wangguan1"></icon>
           </view>
-          <view class="score fs-14">{{ datas.ctz?.k || '-' }}</view>
+          <view class="score">{{ datas.ctz?.k || '-' }}</view>
         </view>
-        <view class="md fs-20"><i class="iconfont icon-duizhan-jian-tianchong"></i></view>
+        <view class="md"><i class="iconfont icon-duizhan-jian-tianchong"></i></view>
         <view class="rt">
-          <view class="score fs-14">{{ datas.mjs?.k || '-' }}</view>
-          <view class="name-mjs fs-10">
+          <view class="score">{{ datas.mjs?.k || '-' }}</view>
+          <view class="name-mjs">
             <text>MJS</text>
             <icon v-if="datas.mjs.k > datas.ctz.k" class="iconfont icon-wangguan1"></icon>
           </view>
         </view>
       </view>
-      <icon class="iconfont icon-jinru fs-12"></icon>
+      <icon class="iconfont icon-jinru"></icon>
     </view>
   </navigator>
 </template>
@@ -42,6 +42,7 @@
       padding: 6px 0;
       text-align: center;
       line-height: 1;
+      font-size: 26rpx;
       color: #c2c2c2;
     }
     .score-box {
@@ -52,40 +53,50 @@
         width: 50%;
         flex: 1;
         text-align: center;
-        height: 30px;
+        height: 60rpx;
         .score {
-          width: 60px;
-          padding: 7px 0;
+          width: 120rpx;
+          padding: 12rpx 0;
           line-height: 1;
           font-weight: bold;
+          font-size: 32rpx;
           color: #333;
         }
         .name-ctz, .name-mjs {
           position: relative;
-          width: 30px;
-          height: 14px;
-          line-height: 14px;
-          margin-top: 8px;
-          border-radius: 4px;
+          width: 56rpx;
+          height: 28rpx;
+          line-height: 28rpx;
+          margin-top: 16rpx;
+          border-radius: 8rpx;
           text-align: center;
+          font-size: 20rpx;
           color: #fff;
           .icon-wangguan1 {
             position: absolute;
+            font-size: 32rpx;
+            width: 32rpx;
+            line-height: 32rpx;
+            height: 32rpx;
+            top: -20rpx;
             color: #ffde21;
+            &:before {
+              position: absolute;
+              top: 0;
+              left: 0;
+            }
           }
         }
         .name-ctz {
           background-image: linear-gradient(90deg, #d984fd, #f0b5f8);
           .icon-wangguan1 {
-            top: -10px;
-            left: -10px;
+            left: -20rpx;
           }
         }
         .name-mjs {
           background-image: linear-gradient(90deg, #aaf9f9, #7dfcfc);
           .icon-wangguan1 {
-            top: -10px;
-            right: -10px;
+            right: -20rpx;
             transform: rotate(90deg);
           }
         }
@@ -97,17 +108,21 @@
         justify-content: flex-start;
       }
       .md {
-        width: 20px;
-        padding: 5px 0;
+        width: 60rpxpx;
+        padding: 10rpx 0;
         line-height: 1;
         text-align: center;
         color: #999;
+        .iconfont {
+          font-size: 38rpx;
+        }
       }
     }
     .icon-jinru {
       position: absolute;
       bottom: 10px;
       right: 10px;
+      font: 26rpx;
       color: #999;
     }
   }

@@ -1,63 +1,63 @@
 <template>
-  <uni-tooltip v-if="text==='全场MVP'" placement="top">
-    <template #content>{{tagMap[text]}}</template>
-    <span class="tag tag-qcmvp"><i class="iconfont icon-MVP1"></i>{{ text }}</span>
+  <uni-tooltip :content="tagMap[text]" v-if="text==='全场MVP'">
+    
+    <view class="tag tag-with-icon tag-qcmvp"><icon class="iconfont icon-MVP1"></icon>{{ text }}</view>
   </uni-tooltip>
-  <uni-tooltip v-else-if="text==='MVP'" placement="top">
-    <template #content>{{tagMap[text]}}</template>
-    <span class="tag tag-mvp"><i class="iconfont icon-wangguan"></i>{{ text }}</span>
+  <uni-tooltip :content="tagMap[text]" v-else-if="text==='MVP'">
+    
+    <view class="tag tag-with-icon tag-mvp"><icon class="iconfont icon-wangguan"></icon>{{ text }}</view>
   </uni-tooltip>
-  <uni-tooltip v-else-if="text==='杀人王'" placement="top">
-    <template #content>{{tagMap[text]}}</template>
-    <span class="tag tag-mvp">{{ text }}</span>
+  <uni-tooltip :content="tagMap[text]" v-else-if="text==='杀人王'">
+    
+    <view class="tag tag-mvp">{{ text }}</view>
   </uni-tooltip>
-  <uni-tooltip v-else-if="text==='天秀'" placement="top">
-    <template #content>{{tagMap[text]}}</template>
-    <span class="tag tag-xiu"><i class="iconfont icon-icon"></i>{{ text }}</span>
+  <uni-tooltip :content="tagMap[text]" v-else-if="text==='天秀'">
+    
+    <view class="tag tag-with-icon tag-xiu"><icon class="iconfont icon-icon"></icon>{{ text }}</view>
   </uni-tooltip>
-  <uni-tooltip v-else-if="text==='壕无人性'" placement="top">
-    <template #content>{{tagMap[text]}}</template>
-    <span class="tag tag-yuanbao"><i class="iconfont icon-yuanbao"></i>{{ text }}</span>
+  <uni-tooltip :content="tagMap[text]" v-else-if="text==='壕无人性'">
+    
+    <view class="tag tag-with-icon tag-yuanbao"><icon class="iconfont icon-yuanbao"></icon>{{ text }}</view>
   </uni-tooltip>
-  <uni-tooltip v-else-if="text==='满头包'" placement="top">
-    <template #content>{{tagMap[text]}}</template>
-    <span class="tag tag-mtb"><i class="iconfont icon-kelian"></i>{{ text }}</span>
+  <uni-tooltip :content="tagMap[text]" v-else-if="text==='满头包'">
+    
+    <view class="tag tag-with-icon tag-mtb"><icon class="iconfont icon-kelian"></icon>{{ text }}</view>
   </uni-tooltip>
-  <uni-tooltip v-else-if="text==='挨最毒的打'" placement="top">
-    <template #content>{{tagMap[text]}}</template>
-    <span class="tag tag-mtb"><i class="iconfont icon-kulian"></i>{{ text }}</span>
+  <uni-tooltip :content="tagMap[text]" v-else-if="text==='挨最毒的打'">
+    
+    <view class="tag tag-with-icon tag-mtb"><icon class="iconfont icon-kulian"></icon>{{ text }}</view>
   </uni-tooltip>
-  <uni-tooltip v-else-if="text==='我是卧底'" placement="top">
-    <template #content>{{tagMap[text]}}</template>
-    <span class="tag tag-wd"><i class="iconfont icon-u___fm__gp_-copy"></i>{{ text }}</span>
+  <uni-tooltip :content="tagMap[text]" v-else-if="text==='我是卧底'">
+    
+    <view class="tag tag-with-icon tag-wd"><icon class="iconfont icon-u___fm__gp_-copy"></icon>{{ text }}</view>
   </uni-tooltip>
-  <uni-tooltip v-else-if="text==='惨遭队友殴打'" placement="top">
-    <template #content>{{tagMap[text]}}</template>
-    <span class="tag tag-wd">惨遭背刺</span>
+  <uni-tooltip :content="tagMap[text]" v-else-if="text==='惨遭队友殴打'">
+    
+    <view class="tag tag-wd">惨遭背刺</view>
   </uni-tooltip>
-  <uni-tooltip v-else-if="text.endsWith('这场克我')" placement="top">
+  <uni-tooltip :content="tagMap[text]" v-else-if="text.endsWith('这场克我')">
     <template #content>{{tagMap['这场克我']}}</template>
-    <span class="tag">{{ text }}</span>
+    <view class="tag">{{ text }}</view>
   </uni-tooltip>
-  <uni-tooltip v-else-if="text.endsWith('相爱相杀')" placement="top">
+  <uni-tooltip :content="tagMap[text]" v-else-if="text.endsWith('相爱相杀')">
     <template #content>{{tagMap['相爱相杀']}}</template>
-    <span class="tag">{{ text }}</span>
+    <view class="tag">{{ text }}</view>
   </uni-tooltip>
-  <uni-tooltip v-else-if="text.endsWith('杀手')" placement="top">
+  <uni-tooltip :content="tagMap[text]" v-else-if="text.endsWith('杀手')">
     <template #content>{{tagMap['杀手']}}</template>
-    <span class="tag">{{ text }}</span>
+    <view class="tag">{{ text }}</view>
   </uni-tooltip>
-  <uni-tooltip v-else-if="text.endsWith('追着打')" placement="top">
+  <uni-tooltip :content="tagMap[text]" v-else-if="text.endsWith('追着打')">
     <template #content>{{tagMap['追着打']}}</template>
-    <span class="tag">{{ text }}</span>
+    <view class="tag">{{ text }}</view>
   </uni-tooltip>
-  <uni-tooltip v-else-if="['超硬', '无私奉献', '最强辅助', '解除最多', '无限火力', '仇恨拉满', '毒王', '武林高手'].includes(text)" placement="top" :hide-after="1">
-    <template #content>{{tagMap[text]}}</template>
-    <span class="tag tag-yx">{{ text }}</span>
+  <uni-tooltip :content="tagMap[text]" v-else-if="['超硬', '无私奉献', '最强辅助', '解除最多', '无限火力', '仇恨拉满', '毒王', '武林高手'].includes(text)" :hide-after="1">
+    
+    <view class="tag tag-yx">{{ text }}</view>
   </uni-tooltip>
-  <uni-tooltip v-else placement="top">
-    <template #content>{{tagMap[text]}}</template>
-    <span class="tag">{{ text }}</span>
+  <uni-tooltip :content="tagMap[text]" v-else>
+    
+    <view class="tag">{{ text }}</view>
   </uni-tooltip>
 </template>
 
@@ -116,61 +116,60 @@
 
 <style lang="scss" scoped>
   .tag {
-    display: inline-block;
+    display: inline-flex;
     position: relative;
     border-radius: 2px;
-    margin-right: 4px;
-    margin-bottom: 4px;
-    padding: 0 2px;
-    font-size: 12px;
+    margin-right: 4rpx;
+    margin-bottom: 4rpx;
+    font-size: 24rpx;
     border: 1px solid #80abd6;
     color: #80abd6;
+    &.tag-with-icon {
+      padding-left: 24rpx;
+    }
     .iconfont {
-      font-size: 16px;
-      line-height: 16px;
+      position: absolute;
+      left: 0;
+      top: 2rpx;
+      width: 24rpx;
+      height: 24rpx;
+      font-size: 24rpx;
+      line-height: 24rpx;
+      &::before {
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
     }
-    .icon-u___fm__gp_-copy, .icon-kulian {
-      font-size: 13px;
-      position: relative;
-    }
+    
   }
   .tag-qcmvp {
     background-color: #ff7322;
-    border: none;
+    border: 1px solid #ff7322;
     color: #fff;
-    padding: 0 4px;
     .iconfont {
-      position: relative;
-      top: 1px;
     }
   }
   .tag-mvp {
-    background-color: #ff7322;
-    border: none;
+    background-image: linear-gradient(-45deg, #2b5cff, #d057ff);
+    border: 1px solid #2b5cff;
     color: #fff;
-    padding: 0 4px;
     .iconfont {
-      position: relative;
-      top: 1px;
     }
   }
   .tag-xiu {
     background-image: linear-gradient(-45deg, #2b5cff, #d057ff);
-    border: none;
+    border: 1px solid #2b5cff;
     color: #fff;
-    padding: 0 4px;
     .iconfont {
-      position: relative;
-      top: 1px;
     }
   }
   .tag-yuanbao {
     background-color: #ffcc00;
-    border: none;
+    border: 1px solid #ffcc00;
     color: #fff;
     .iconfont {
-      position: relative;
-      top: 1px;
+      color: #fff;
     }
   }
   .tag-yx {
@@ -181,20 +180,16 @@
     border: 1px solid #022202;
     color: #022202;
     .iconfont {
-      position: relative;
-      top: 0px;
     }
     .icon-kelian {
-      top: 2px;
+      top: 2rpx;
     }
   }
   .tag-wd {
     border: 1px solid #a09797;
     color: #a09797;
     .iconfont {
-      position: relative;
-      top: 0;
+      top: 2rpx;
     }
   }
-  
 </style>

@@ -19,21 +19,26 @@
       >{{ item.label }}</view>
     </scroll-view>
     <!-- 右侧数据表格 -->
-    <scroll-view class="cnt-r" scroll-y>
+    <scroll-view class="cnt-r" :key="curDimension.value + showCamp" scroll-y>
       <view 
-        :class="['list-item', curDimension.value==='tags' && 'tag-item']" 
         v-for="(item, index) in showDatas" 
-        :key="item.id"
+        :key="`${curDimension.value}-${item.id}`"
+        :class="['list-item', curDimension.value==='tags' && 'tag-item', index===0 && 'first', index===1 && 'second', index===2 && 'third']" 
       >
-        <view :class="['td1', index===0 && 'first', index===1 && 'second', index===2 && 'third']">{{ index + 1 }}</view>
-        <view class="td2">{{ item.playerInfo?.name }}</view>
+        <view class="td1">{{ index + 1 }}</view>
+        <view class="td2" @click="showDrawer(item)"><text class="player-name">{{ item.playerInfo?.name }}</text><view :class="item.playerInfo.camp">{{ item.playerInfo.camp?.toUpperCase() }}</view><icon class="iconfont icon-jinru"></icon></view>
         <view class="td3">
           <template v-if="curDimension.value==='tags'">
-            <tags v-for="text in item.tags" :text="text"></tags>
+            <tags class="tags" v-for="text in item.tags" :text="text"></tags>
           </template>
           <text v-else>{{ item[curDimension.value] }}</text>
         </view>
       </view>
+      <uni-drawer ref="playerDetailDrawer" mode="right" width="600r">
+        <scroll-view style="height: 100%;" scroll-y>
+          <playerDetail :datas="curPlayer"></playerDetail>
+        </scroll-view>
+      </uni-drawer>
     </scroll-view>
   </view>
 </template>
@@ -45,6 +50,7 @@
   import { showCampOptions, dimensionOptions } from '@/constant/options'
   import type { BattlePlayerDetailType } from '@/types/home'
   import tags from './tags.vue'
+  import playerDetail from './playerDetail.vue'
 
   const props = defineProps<{
     datas: BattlePlayerDetailType[]
@@ -65,6 +71,15 @@
     setData()
   }
 
+  // 选手详情抽屉
+  const playerDetailDrawer = ref()
+  const curPlayer = ref()
+  const showDrawer = (item: BattlePlayerDetailType) => {
+    playerDetailDrawer.value?.open()
+    curPlayer.value = item
+  }
+
+  // 计算展示的数据
   const showDatas = computed(() => {
     console.log(rankDatas.value)
     return filter(rankDatas.value, (item: BattlePlayerDetailType) => {
