@@ -1,64 +1,35 @@
 <template>
-  <uni-tooltip :content="tagMap[text]" v-if="text==='全场MVP'">
     
-    <view class="tag tag-with-icon tag-qcmvp"><icon class="iconfont icon-MVP1"></icon>{{ text }}</view>
-  </uni-tooltip>
-  <uni-tooltip :content="tagMap[text]" v-else-if="text==='MVP'">
+    <view v-if="text==='MVP'" class="tag tag-with-icon tag-mvp"><icon class="iconfont icon-wangguan2"></icon>{{ text }}</view>
     
-    <view class="tag tag-with-icon tag-mvp"><icon class="iconfont icon-wangguan"></icon>{{ text }}</view>
-  </uni-tooltip>
-  <uni-tooltip :content="tagMap[text]" v-else-if="text==='杀人王'">
+    <view v-else-if="text==='杀人王' || text==='杀戮机器'" class="tag tag-srw">{{ text }}</view>
     
-    <view class="tag tag-mvp">{{ text }}</view>
-  </uni-tooltip>
-  <uni-tooltip :content="tagMap[text]" v-else-if="text==='天秀'">
+    <view v-else-if="text==='天秀'" class="tag tag-with-icon tag-xiu"><icon class="iconfont icon-icon"></icon>{{ text }}</view>
     
-    <view class="tag tag-with-icon tag-xiu"><icon class="iconfont icon-icon"></icon>{{ text }}</view>
-  </uni-tooltip>
-  <uni-tooltip :content="tagMap[text]" v-else-if="text==='壕无人性'">
+    <view v-else-if="text==='战场终结者'" class="tag tag-yuanbao">{{ text }}</view>
     
-    <view class="tag tag-with-icon tag-yuanbao"><icon class="iconfont icon-yuanbao"></icon>{{ text }}</view>
-  </uni-tooltip>
-  <uni-tooltip :content="tagMap[text]" v-else-if="text==='满头包'">
+    <view v-else-if="text==='满头包'" class="tag tag-with-icon tag-mtb"><icon class="iconfont icon-kelian"></icon>{{ text }}</view>
     
-    <view class="tag tag-with-icon tag-mtb"><icon class="iconfont icon-kelian"></icon>{{ text }}</view>
-  </uni-tooltip>
-  <uni-tooltip :content="tagMap[text]" v-else-if="text==='挨最毒的打'">
+    <view v-else-if="text==='挨最毒的打' || text==='霹得妈都不认识'" class="tag tag-with-icon tag-mtb"><icon class="iconfont icon-kulian"></icon>{{ text }}</view>
     
-    <view class="tag tag-with-icon tag-mtb"><icon class="iconfont icon-kulian"></icon>{{ text }}</view>
-  </uni-tooltip>
-  <uni-tooltip :content="tagMap[text]" v-else-if="text==='我是卧底'">
+    <view v-else-if="text==='我是卧底'" class="tag tag-with-icon tag-wd"><icon class="iconfont icon-u___fm__gp_-copy"></icon>{{ text }}</view>
     
-    <view class="tag tag-with-icon tag-wd"><icon class="iconfont icon-u___fm__gp_-copy"></icon>{{ text }}</view>
-  </uni-tooltip>
-  <uni-tooltip :content="tagMap[text]" v-else-if="text==='惨遭队友殴打'">
+    <view v-else-if="text==='惨遭背刺'" class="tag tag-wd">{{ text }}</view>
+
+    <view v-else-if="text.endsWith('这场克我')" class="tag">{{ text }}</view>
+
+    <view v-else-if="text.endsWith('相爱相杀')" class="tag">{{ text }}</view>
+
+    <view v-else-if="text.endsWith('杀手')" class="tag">{{ text }}</view>
+
+    <view v-else-if="text.endsWith('追着打')" class="tag">{{ text }}</view>
     
-    <view class="tag tag-wd">惨遭背刺</view>
-  </uni-tooltip>
-  <uni-tooltip :content="tagMap[text]" v-else-if="text.endsWith('这场克我')">
-    <template #content>{{tagMap['这场克我']}}</template>
-    <view class="tag">{{ text }}</view>
-  </uni-tooltip>
-  <uni-tooltip :content="tagMap[text]" v-else-if="text.endsWith('相爱相杀')">
-    <template #content>{{tagMap['相爱相杀']}}</template>
-    <view class="tag">{{ text }}</view>
-  </uni-tooltip>
-  <uni-tooltip :content="tagMap[text]" v-else-if="text.endsWith('杀手')">
-    <template #content>{{tagMap['杀手']}}</template>
-    <view class="tag">{{ text }}</view>
-  </uni-tooltip>
-  <uni-tooltip :content="tagMap[text]" v-else-if="text.endsWith('追着打')">
-    <template #content>{{tagMap['追着打']}}</template>
-    <view class="tag">{{ text }}</view>
-  </uni-tooltip>
-  <uni-tooltip :content="tagMap[text]" v-else-if="['超硬', '无私奉献', '最强辅助', '解除最多', '无限火力', '仇恨拉满', '毒王', '武林高手'].includes(text)" :hide-after="1">
+    <view v-else-if="['超硬', '无私奉献', '最强辅助', '控制拉满', '无限火力', '仇恨拉满', '毒王', '无敌剑客', '固若金汤'].includes(text)" class="tag tag-yx">{{ text }}</view>
     
-    <view class="tag tag-yx">{{ text }}</view>
-  </uni-tooltip>
-  <uni-tooltip :content="tagMap[text]" v-else>
+    <view v-else-if="text.includes('连杀')" class="tag tag-liansha">{{ text }}</view>
     
-    <view class="tag">{{ text }}</view>
-  </uni-tooltip>
+    <view v-else class="tag">{{ text }}</view>
+
 </template>
 
 <script lang="ts" setup>
@@ -116,20 +87,43 @@
 
 <style lang="scss" scoped>
   .tag {
+    @mixin gradient-color-bg {
+      animation: gradientText 800s infinite linear;
+      -webkit-animation: gradientText 800s infinite linear;
+      -webkit-text-fill-color: #fff;
+      border: 1px solid transparent;
+    }
+    @mixin grater-icon {
+      top: 4rpx;
+      width: 26rpx;
+      height: 26rpx;
+      font-size: 26rpx;
+      line-height: 26rpx;
+    }
+    @keyframes gradientBg {
+      0% {
+        background-position: 0;
+      }
+      100% {
+        background-position: 28000px;
+      }
+    }
     display: inline-flex;
     position: relative;
     border-radius: 2px;
     margin-right: 4rpx;
     margin-bottom: 4rpx;
+    padding: 0 4rpx;
     font-size: 24rpx;
     border: 1px solid #80abd6;
     color: #80abd6;
+    -webkit-text-fill-color: #80abd6;
     &.tag-with-icon {
-      padding-left: 24rpx;
+      padding-left: 30rpx;
     }
     .iconfont {
       position: absolute;
-      left: 0;
+      left: 2rpx;
       top: 2rpx;
       width: 24rpx;
       height: 24rpx;
@@ -141,55 +135,60 @@
         left: 0;
       }
     }
-    
-  }
-  .tag-qcmvp {
-    background-color: #ff7322;
-    border: 1px solid #ff7322;
-    color: #fff;
-    .iconfont {
+
+    &.tag-mvp {
+      background-image: linear-gradient(60deg, #ff9f50, #ff5500, #ff9f50);
+      @include gradient-color-bg;
+      .iconfont {
+        @include grater-icon;
+      }
+    }
+
+    &.tag-srw {
+      background-image: linear-gradient(60deg, #f26060, #ff2222, #f26060);
+      @include gradient-color-bg;
+    }
+
+    &.tag-xiu {
+      background-image: linear-gradient(60deg, #a96fff, #6a3eee, #a96fff);
+      @include gradient-color-bg;
+    }
+    &.tag-yuanbao {
+      background-image: linear-gradient(60deg, #f3e765, #ffdd61, #f3e765);
+      @include gradient-color-bg;
+    }
+    &.tag-yx {
+      border: 1px solid #fe853f;
+      color: #fe853f;
+      -webkit-text-fill-color: #fe853f;
+    }
+
+    &.tag-liansha {
+      border: 1px solid #ff2a2a;
+      color: #ff2a2a;
+      -webkit-text-fill-color: #ff2a2a;
+    }
+
+    &.tag-mtb {
+      border: 1px solid #022202;
+      color: #022202;
+      -webkit-text-fill-color: #022202;
+      .icon-kelian {
+        @include grater-icon;
+      }
+      .icon-kulian {
+        top: 4rpx;
+      }
+    }
+    &.tag-wd {
+      border: 1px solid #a09797;
+      color: #a09797;
+      -webkit-text-fill-color: #a09797;
+      .iconfont {
+        top: 4rpx;
+        left: -2rpx;
+      }
     }
   }
-  .tag-mvp {
-    background-image: linear-gradient(-45deg, #2b5cff, #d057ff);
-    border: 1px solid #2b5cff;
-    color: #fff;
-    .iconfont {
-    }
-  }
-  .tag-xiu {
-    background-image: linear-gradient(-45deg, #2b5cff, #d057ff);
-    border: 1px solid #2b5cff;
-    color: #fff;
-    .iconfont {
-    }
-  }
-  .tag-yuanbao {
-    background-color: #ffcc00;
-    border: 1px solid #ffcc00;
-    color: #fff;
-    .iconfont {
-      color: #fff;
-    }
-  }
-  .tag-yx {
-    border: 1px solid #ff7322;
-    color: #ff7322;
-  }
-  .tag-mtb {
-    border: 1px solid #022202;
-    color: #022202;
-    .iconfont {
-    }
-    .icon-kelian {
-      top: 2rpx;
-    }
-  }
-  .tag-wd {
-    border: 1px solid #a09797;
-    color: #a09797;
-    .iconfont {
-      top: 2rpx;
-    }
-  }
+  
 </style>

@@ -4,13 +4,13 @@
       <view class="baseInfo">
         <view class="row">
           <up-avatar
-            :text="datas.playerInfo.name.substring(0,1)"
+            :text="datas.playerInfo?.name.substring(0,1)"
             fontSize="18"
             randomBgColor
           ></up-avatar>
           <view class="roles">
-            <view class="main-role">{{ datas.playerInfo.name }}</view>
-            <view class="sub-role">{{ datas.playerInfo.roles.join('/') }}</view>
+            <view class="main-role">{{ datas.playerInfo?.name }}</view>
+            <view class="sub-role">{{ datas.playerInfo?.roles.join('/') }}</view>
           </view>
         </view>
       </view>
@@ -28,40 +28,32 @@
     </uni-section>
 
     <uni-section title="本场详细数据" type="line" padding="0 0 5px 10px">
-      <uni-collapse ref="collapse" v-model="collapseValue">
-				<uni-collapse-item title="我杀的人" >
-					<view class="content" v-html="formatItem(datas.killNames)"></view>
-				</uni-collapse-item>
-				<uni-collapse-item title="杀我的人" >
-					<view class="content" v-html="formatItem(datas.killByNames)"></view>
-				</uni-collapse-item>
-        <uni-collapse-item title="我使用卡片/配药/法器的人">
-					<view class="content" v-html="formatItem(datas.operationNames)"></view>
-				</uni-collapse-item>
-        <uni-collapse-item title="对我使用卡片/配药/法器的人" >
-					<view class="content" v-html="formatItem(datas.operationByNames)"></view>
-				</uni-collapse-item>
-			</uni-collapse>
+      <view class="sub-title">我杀的人</view>
+      <view class="content" v-html="formatItem(datas.killNames)"></view>
+      <view class="sub-title">杀我的人</view>
+      <view class="content" v-html="formatItem(datas.killByNames)"></view>
+      <view class="sub-title">我使用卡片/配药/法器的人</view>
+      <view class="content" v-html="formatItem(datas.operationNames)"></view>
+      <view class="sub-title">对我使用卡片/配药/法器的人</view>
+      <view class="content" v-html="formatItem(datas.operationByNames)"></view>
     </uni-section>
   </view>
 </template>
 
 <script setup lang="ts">
-  import { ref } from 'vue'
+  import { ref, watch, nextTick } from 'vue'
   import { orderBy } from 'lodash-es'
   import type { BattlePlayerDetailType } from '@/types/home'
   import { playerDetailList } from '@/constant/options'
 
-  defineProps<{datas: BattlePlayerDetailType}>()
+  const props = defineProps<{datas: BattlePlayerDetailType}>()
 
   const collapseValue = ref(['0', '1', '2', '3'])
   const gridList = ref(playerDetailList)
 
   interface detailType {[key: string]: number}
   const formatItem = (obj: detailType) => {
-    if (!obj) {
-      return '暂无数据'
-    }
+    if (!obj) { return '暂无数据' }
     let str = ''
     const arr: any[] = []
     Object.keys(obj).forEach(key => {
@@ -70,12 +62,21 @@
         value: obj[key]
       })
     })
+    if (!arr.length) { return '暂无数据' }
     orderBy(arr, ['value'], ['desc']).forEach(item => {
       str += `<span style="margin-right: 10px;">${item.name}: ${item.value}</span>`
     })
-    console.log(str)
     return str
   }
+
+  watch(() => props.datas, async () => {
+    collapseValue.value = []
+    await nextTick()
+    collapseValue.value = ['0', '1', '2', '3']
+  }, {
+    immediate: true,
+    deep: true
+  })
 </script>
 
 <style lang="scss">
@@ -113,19 +114,18 @@
         font-weight: bold;
       }
     }
+    .sub-title {
+      font-size: 28rpx;
+      font-weight: bold;
+      color: #666;
+      padding: 0 24rpx 8rpx;
+    }
     .content {
       color: #999;
-      padding: 0 32rpx 20rpx;
+      padding: 0 24rpx 30rpx;
+      font-size: 26rpx;
     }
   }
 
-  .uni-collapse-item {
-    .uni-collapse-item__title-box {
-      height: 60rpx;
-      line-height: 60rpx;
-    }
-    .uni-collapse-item__title-text {
-      font-size: 32rpx;
-    }
-  }
+
 </style>

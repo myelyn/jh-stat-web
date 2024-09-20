@@ -12,6 +12,27 @@
     flex-direction: column;
     overflow: hidden;
   }
+  .uni-table {
+    min-width: 320px!important;
+    .uni-table-th {
+      font-size: 30rpx;
+      color: #333;
+    }
+    .td-title {
+      font-size: 28rpx;
+      color: #666;
+      &.highlight {
+        font-weight: bold;
+      }
+    }
+    .td-data {
+      font-size: 32rpx;
+      font-weight: bold;
+      &.highlight {
+        color:#ff1414;
+      }
+    }
+  }
   .rank-wrapper {
     .header {
       display: flex;
@@ -69,12 +90,12 @@
         .list-item {
           display: flex;
           flex-wrap: nowrap;
-          padding: 12px 0;
+          padding: 20rpx 0;
           font-size: 26rpx;
           line-height: 32rpx;
           .td1 {
             flex: none;
-            width: 60rpx;
+            width: 50rpx;
             padding-left: 20rpx;
             font-size: 28rpx;
             font-weight: bold;
@@ -90,7 +111,7 @@
               height: 32rpx;
               line-height: 32rpx;
               font-size: 22rpx;
-              margin: 0 6rpx;
+              margin: 0 4rpx;
               color: $primary-color;
               -webkit-text-fill-color: $primary-color;
               &::before {
@@ -105,7 +126,7 @@
               width: 56rpx;
               height: 26rpx;
               line-height: 26rpx;
-              margin-left: 16rpx;
+              margin-left: 10rpx;
               margin-top: 5rpx;
               border-radius: 8rpx;
               text-align: center;
@@ -151,35 +172,35 @@
             background-size: auto;
           }
           &.first {
-            .td1, .td2, .td3 {
+            >.td1, >.td2, >.td3 {
               background: linear-gradient(30deg, #32c5ff 25%, #b620e0 50%, #f7b500 75%, #20e050 100%);
               @include text-color-bg;
             }
-            .td1, .td3 {
+            >.td1, >.td3 {
               font-size: 30rpx;
             }
-            .td2, .td3 {
+            >.td2, >.td3 {
               animation: gradientText 300s infinite linear;
               -webkit-animation: gradientText 300s infinite linear;
             }
           }
           &.second {
-            .td1, .td2, .td3 {
+            >.td1, >.td2, >.td3 {
               color: transparent;
               background: -webkit-linear-gradient(30deg, #ff327d 25%, #ef84ed 50%, #f78800 75%, #e020d3 100%);
               @include text-color-bg;
             }
-            .td1, .td3 {
+            >.td1, >.td3 {
               font-size: 30rpx;
             }
           }
           &.third {
-            .td1, .td2, .td3 {
+            >.td1, >.td2, >.td3 {
               color: transparent;
               background: -webkit-linear-gradient(30deg, #ffb032 25%, #ee8637 50%, #ddb0f5 75%, #9ce1ef 100%);
               @include text-color-bg;
             }
-            .td1, .td3 {
+            >.td1, >.td3 {
               font-size: 30rpx;
             }
           }

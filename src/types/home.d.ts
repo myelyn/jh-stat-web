@@ -80,3 +80,36 @@ export type BattlePlayerDetailType = {
   tags: string[],
   wdo: number
 }
+
+export type battleOverviewItemType = {
+  a: number,
+  a_fq: number,
+  a_jc: number,
+  a_pl: number,
+  a_ss: number,
+  a_xh: number,
+  a_xx: number,
+  avgmscs: number,
+  avgscore: number,
+  cost: number,
+  d: number,
+  fx: number,
+  k: number,
+  k_ds: number,
+  k_fq: number,
+  k_xh: number,
+  k_zs: number,
+  mscs: number,
+  n: number,
+  s: number,
+  score: number,
+  sd: number,
+  [key: string]: number
+} 
+export type battleOverviewType = {
+  ctz: battleOverviewItemType,
+  mjs: battleOverviewItemType,
+  id: number,
+  startTime: string,
+  endTime: string
+}

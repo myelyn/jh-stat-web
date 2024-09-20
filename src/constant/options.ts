@@ -180,3 +180,53 @@ export const playerDetailList: OptionsItemType[] = [{
   value: 'consume'
 }]
 
+
+export const battleOverviewTableHeaders: OptionsItemType[] = [{
+  label: '参战人数',
+  value: 'n'
+},{
+  label: '总杀人',
+  value: 'k'
+},{
+  label: '总招杀',
+  value: 'k_zs'
+},{
+  label: '总毒杀',
+  value: 'k_ds'
+},{
+  label: '总法器杀人',
+  value: 'k_fq'
+},{
+  label: '总小孩杀人',
+  value: 'k_xh'
+},{
+  label: '总助攻',
+  value: 'a'
+},{
+  label: '总解除',
+  value: 'a_jc'
+},{
+  label: '总陷害',
+  value: 'a_xh'
+},{
+  label: '总法器失败',
+  value: 'a_fq'
+},{
+  label: '总死神',
+  value: 'a_ss'
+},{
+  label: '总霹雳',
+  value: 'a_pl'
+},{
+  label: '总阵亡',
+  value: 'd'
+},{
+  label: '平均评分',
+  value: 'avgscore'
+},{
+  label: '平均每死承伤',
+  value: 'avgmscs'
+},{
+  label: '花费金币估算',
+  value: 'cost'
+}]

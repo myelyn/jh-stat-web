@@ -22,7 +22,7 @@
     <scroll-view class="cnt-r" :key="curDimension.value + showCamp" scroll-y>
       <view 
         v-for="(item, index) in showDatas" 
-        :key="`${curDimension.value}-${item.id}`"
+        :key="`${curDimension.value}-${showCamp}-${item.id}`"
         :class="['list-item', curDimension.value==='tags' && 'tag-item', index===0 && 'first', index===1 && 'second', index===2 && 'third']" 
       >
         <view class="td1">{{ index + 1 }}</view>
@@ -36,7 +36,7 @@
       </view>
       <uni-drawer ref="playerDetailDrawer" mode="right" width="600r">
         <scroll-view style="height: 100%;" scroll-y>
-          <playerDetail :datas="curPlayer"></playerDetail>
+          <playerDetail v-if="curPlayer" :datas="curPlayer"></playerDetail>
         </scroll-view>
       </uni-drawer>
     </scroll-view>
@@ -74,17 +74,17 @@
   // 选手详情抽屉
   const playerDetailDrawer = ref()
   const curPlayer = ref()
-  const showDrawer = (item: BattlePlayerDetailType) => {
-    playerDetailDrawer.value?.open()
+  const showDrawer = async (item: BattlePlayerDetailType) => {
     curPlayer.value = item
+    playerDetailDrawer.value?.open()
   }
 
   // 计算展示的数据
   const showDatas = computed(() => {
-    console.log(rankDatas.value)
-    return filter(rankDatas.value, (item: BattlePlayerDetailType) => {
+    const ret = filter(rankDatas.value, (item: BattlePlayerDetailType) => {
       return campOptionsMap[showCamp.value].includes(item.playerInfo?.camp)
     })
+    return ret
   })
 
   const rankDatas = ref<BattlePlayerDetailType[]>([])
