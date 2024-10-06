@@ -38,6 +38,14 @@
 				"navigationBarTitleText": "战斗详情"
 			}
 		},
+		{
+			"path": "pages/login/login",
+			"style": {
+				"navigationBarTitleText": "登录",
+				"navigationStyle": "custom",
+				"navigationBarTextStyle": "white"
+			}
+		}
 	],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",

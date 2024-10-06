@@ -122,7 +122,7 @@
       position: absolute;
       bottom: 10px;
       right: 10px;
-      font: 26rpx;
+      font-size: 26rpx;
       color: #999;
     }
   }

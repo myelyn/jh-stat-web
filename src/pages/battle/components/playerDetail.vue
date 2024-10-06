@@ -18,8 +18,8 @@
 
     <uni-section title="本场基础数据" type="line" padding="0 0 5px 10px">
       <uni-grid :column="3" :show-border="false" :square="false">
-        <uni-grid-item v-for="(item ,index) in gridList" :index="index" :key="index">
-          <view class="grid-item-box">
+        <uni-grid-item v-for="(item ,index) in gridList" @tap.stop :index="index" :key="index">
+          <view :class="['grid-item-box', ['k', 'd', 'a', 's'].includes(item.value) && 'highlight']">
             <view class="item-label">{{ item.label }}</view>
             <text class="item-data">{{ datas[item.value] }}</text>
           </view>
@@ -112,6 +112,12 @@
         font-size: 32rpx;
         color: #333;
         font-weight: bold;
+      }
+      &.highlight {
+        .item-label {
+          color: $primary-color;
+          font-weight: bold;
+        }
       }
     }
     .sub-title {

@@ -15,7 +15,7 @@
     display: flex;
     flex-direction: column;
     width: 100%;
-    height: calc(100vh);
+    height: 100vh;
     .home-list-wrapper {
       flex: 1;
       overflow: hidden;

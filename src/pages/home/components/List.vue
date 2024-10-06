@@ -52,10 +52,11 @@
   const getBattleList = async () => {
     loadStatus.value = 'loading'
     const res = await getBattleListApi(page.pageNum, page.pageSize)
-    page.totalPage = res.result.totalPage
+    page.totalPage = res.result?.totalPage || 0
     if (res.result?.list) {
       battleList.value = [...battleList.value, ...res.result.list]
     }
+    loadStatus.value = 'nomore'
   }
 
   onLoad (() => {

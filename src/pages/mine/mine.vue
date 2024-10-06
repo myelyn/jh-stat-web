@@ -9,9 +9,12 @@
           <text class="fs-16">{{ userInfoStore.userInfo.username }}</text><br/>
           <text class="fs-14" >认证选手：未认证</text>
         </view>
-        <view v-else class="user-info-wrapper" @tap="userInfoStore.setUserInfo({username: 'test11'})">
-          <text class="fs-16">未登录</text><br/>
-          <text class="fs-14">点击登录</text>
+        <!-- @tap="userInfoStore.setUserInfo({username: 'test11'})" -->
+        <view v-else class="user-info-wrapper">
+          <navigator :url="`/pages/login/login`">
+            <text class="fs-16">未登录</text><br/>
+            <text class="fs-14">点击登录</text>
+          </navigator>
         </view>
       </view>
     </view>
@@ -24,7 +27,7 @@
         </view>
         <view class="menu-item">
           <icon class="iconfont l-icon icon-shenfenrenzheng"></icon>
-          <text>职业选手认证</text>
+          <text>创建战斗</text>
           <icon class="iconfont icon-jinru fs-12"></icon>
         </view>
       </template>
@@ -46,6 +49,7 @@
   const imgBase = ref(`${import.meta.env.VITE_IMAGE_BASE}/`)
 
   const userInfoStore = useUserInfoStore()
+
 </script>
 
 <style lang="scss">
@@ -54,11 +58,8 @@
     .mine-header {
       width: 100%;
       padding: 30px 20px;
-      background-size: cover;
+      background: $primary-color;
       color: #fff;
-      .bg {
-        display: none;
-      }
       .header-cnt {
         width: 100%;
         display: flex;

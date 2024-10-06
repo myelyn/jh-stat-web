@@ -11,11 +11,11 @@ export const showCampOptions: OptionsItemType[] = [{
 }]
 
 export const dimensionOptions: OptionsItemType[] = [{
-  label: '综合评分',
-  value: 'score'
-},{
   label: '获得称号',
   value: 'tags'
+},{
+  label: '综合评分',
+  value: 'score'
 },{
   label: 'KDA',
   value: 'kda'

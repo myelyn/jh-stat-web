@@ -34,12 +34,14 @@
           <text v-else>{{ item[curDimension.value] }}</text>
         </view>
       </view>
-      <uni-drawer ref="playerDetailDrawer" mode="right" width="600r">
-        <scroll-view style="height: 100%;" scroll-y>
-          <playerDetail v-if="curPlayer" :datas="curPlayer"></playerDetail>
-        </scroll-view>
-      </uni-drawer>
     </scroll-view>
+  </view>
+  <view>
+    <up-popup :show="isShowDrawer" closeable @close="isShowDrawer=false" mode="right" :overlayOpacity="0.7" :zIndex="100000">
+      <scroll-view style="height: 100%; width: 600rpx;" scroll-y>
+        <playerDetail v-if="curPlayer" :datas="curPlayer"></playerDetail>
+      </scroll-view>
+    </up-popup>
   </view>
 </template>
 
@@ -72,11 +74,11 @@
   }
 
   // 选手详情抽屉
-  const playerDetailDrawer = ref()
   const curPlayer = ref()
+  const isShowDrawer = ref(false)
   const showDrawer = async (item: BattlePlayerDetailType) => {
     curPlayer.value = item
-    playerDetailDrawer.value?.open()
+    isShowDrawer.value = true
   }
 
   // 计算展示的数据
