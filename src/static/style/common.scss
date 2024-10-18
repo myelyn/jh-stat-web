@@ -7,3 +7,7 @@ $primary-color: #558dda;
 button[type=primary] {
   background-color: $primary-color;
 }
+
+button[disabled][type=primary] {
+  background-color: #8fbaff;
+}

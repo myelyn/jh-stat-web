@@ -5,7 +5,7 @@ export const useUserInfoStore = defineStore(
   'userInfo', 
   () => {
     const userInfo = ref()
-
+    const token = ref('')
     const setUserInfo = (val: any) => {
       console.log(val)
       userInfo.value = val
@@ -15,10 +15,21 @@ export const useUserInfoStore = defineStore(
       userInfo.value = undefined
     }
 
+    const setToken = (val: string) => {
+      token.value = val
+    }
+
+    const clearToken = (val: string) => {
+      token.value = ''
+    }
+
     return {
       userInfo,
       setUserInfo,
-      clearUserInfo
+      clearUserInfo,
+      setToken,
+      clearToken,
+      token
     }
 
   }, {

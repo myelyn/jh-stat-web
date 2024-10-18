@@ -7,7 +7,7 @@
         </view>
         <view v-if="userInfoStore.userInfo" class="user-info-wrapper">
           <text class="fs-16">{{ userInfoStore.userInfo.username }}</text><br/>
-          <text class="fs-14" >认证选手：未认证</text>
+          <text class="fs-14">普通成员</text>
         </view>
         <!-- @tap="userInfoStore.setUserInfo({username: 'test11'})" -->
         <view v-else class="user-info-wrapper">

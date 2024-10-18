@@ -1,5 +1,5 @@
-// const baseUrl = 'http://localhost:9090'
-const baseUrl = 'https://mxmjh.top/jhstat'
+const baseUrl = 'http://localhost:9090'
+// const baseUrl = 'https://mxmjh.top/jhstat'
 
 uni.addInterceptor('request', {
   invoke(options) {
