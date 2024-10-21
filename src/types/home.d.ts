@@ -16,7 +16,8 @@ export type BattleListApiResult = {
 
 export type OptionsItemType = {
   label: string,
-  value: string
+  value: string,
+  name?: string
 }
 
 export type playerInfoType = {

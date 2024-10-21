@@ -1,3 +1,7 @@
+import { useUserInfoStore } from '@/stores/userInfo'
+
+const userInfoStore = useUserInfoStore()
+
 const baseUrl = 'http://localhost:9090'
 // const baseUrl = 'https://mxmjh.top/jhstat'
 
@@ -19,6 +23,9 @@ const http = <T>(options: UniApp.RequestOptions) => {
   return new Promise<resType<T>>((resolve, reject) => {
     uni.request({
       ...options,
+      header: {
+        authorization: userInfoStore.token
+      },
       success (res) {
         if (res.statusCode >= 200 && res.statusCode < 300) {
           resolve(res.data as resType<T>)

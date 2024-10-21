@@ -5,11 +5,10 @@
         <view class="avatar-wrapper">
           <image class="avatar-img" :src="`${imgBase}/${userInfoStore.userInfo ? 'avatar_default_login.png' : 'avatar_default_logout.png'}`"/>
         </view>
-        <view v-if="userInfoStore.userInfo" class="user-info-wrapper">
-          <text class="fs-16">{{ userInfoStore.userInfo.username }}</text><br/>
-          <text class="fs-14">普通成员</text>
+        <view v-if="userInfo" class="user-info-wrapper">
+          <text class="fs-16">{{ userInfo.username }}</text><br/>
+          <text class="fs-14">{{ roleName }}</text>
         </view>
-        <!-- @tap="userInfoStore.setUserInfo({username: 'test11'})" -->
         <view v-else class="user-info-wrapper">
           <navigator :url="`/pages/login/login`">
             <text class="fs-16">未登录</text><br/>
@@ -19,30 +18,29 @@
       </view>
     </view>
     <view class="mine-menu">
-      <template v-if="userInfoStore.userInfo">
-        <view class="menu-item">
-          <icon class="iconfont l-icon icon-shezhi"></icon>
-          <text>账号管理</text>
-          <icon class="iconfont icon-jinru fs-12"></icon>
-        </view>
-        <view class="menu-item">
-          <icon class="iconfont l-icon icon-shenfenrenzheng"></icon>
-          <text>创建战斗</text>
-          <icon class="iconfont icon-jinru fs-12"></icon>
-        </view>
-      </template>
+      <view url="/pages/secondrate/secondrate" class="menu-item" @tap="handleSecondRateTap">
+        <icon class="iconfont l-icon icon-shezhi"></icon>
+        <text>同秒率计算工具</text>
+        <icon class="iconfont icon-jinru fs-12"></icon>
+      </view>
+      <view class="menu-item" @tap="handleCreateBattleTap">
+        <icon class="iconfont l-icon icon-shenfenrenzheng"></icon>
+        <text>管理战斗</text>
+        <icon class="iconfont icon-jinru fs-12"></icon>
+      </view>
       <view class="menu-item">
         <icon class="iconfont l-icon icon-guanyuwomen"></icon>
         <text>关于</text>
         <icon class="iconfont icon-jinru fs-12"></icon>
       </view>
-      <button v-if="userInfoStore.userInfo" @tap="userInfoStore.clearUserInfo()" class="button-exit" type="primary">退出登录</button>
+      <button v-if="userInfo" @tap="clearUserInfo()" class="button-exit" hover-class="none" type="primary">退出登录</button>
     </view>
   </view>
+  <up-toast ref="uToastRef"></up-toast>
 </template>
 
 <script setup lang="ts">
-  import { ref } from 'vue'
+  import { ref, toRefs, computed } from 'vue'
   import { useUserInfoStore } from '@/stores/userInfo'
 
   const { safeAreaInsets } = uni.getSystemInfoSync()
@@ -50,6 +48,54 @@
 
   const userInfoStore = useUserInfoStore()
 
+  const { userInfo, clearUserInfo,  } = toRefs(userInfoStore)
+
+  const roleName = computed(() => { 
+    if (!userInfo.value?.roleId) {
+      return '未知'
+    }
+    switch (userInfo.value.roleId) {
+      case 1:
+        return '超级管理员'
+      case 2: 
+        return '管理员'
+      default:
+        return '普通成员'
+    }
+  })
+
+  const uToastRef = ref()
+  const verifyAuth = () => {
+    if (!userInfo.value || ![1,2].includes(userInfo.value.roleId)) {
+      uToastRef.value.show({
+        type: 'error',  
+        message: '仅管理员可以操作'
+      })
+      return Promise.reject('无权限')
+    }
+    return Promise.resolve()
+  }
+  const handleSecondRateTap = async () => {
+    try {
+      await verifyAuth()
+      uni.navigateTo({
+        url: '/pages/secondrate/secondrate'
+      })
+    } catch(e) {
+      console.log(e)
+    }
+  }
+
+  const handleCreateBattleTap = async () => {
+    try {
+      await verifyAuth()
+      uni.navigateTo({
+        url: '/pages/createbattle/createbattle'
+      })
+    } catch(e) {
+      console.log(e)
+    }
+  }
 </script>
 
 <style lang="scss">

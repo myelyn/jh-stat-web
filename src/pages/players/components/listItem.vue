@@ -7,16 +7,12 @@
         randomBgColor
       ></up-avatar>
       <view class="col1">
+        <view class="player-name">{{ datas.name }}</view>
         <view class="sub-title">{{ datas.camp.toUpperCase() }}</view>
-        <view class="data">{{ datas.name }}</view>
       </view>
       <view class="col2">
-        <view class="sub-title">赛季杀人: 100</view>
-        <view class="sub-title">赛季出勤: 20场</view>
-      </view>
-      <view class="col3">
-        <view class="sub-title"></view>
-        <view class="sub-title"></view>
+        <view class="sub-title">{{ label }}</view>
+        <view class="value-data">{{ datas?.seasonData && (['k', 'a', 'cost', 'mscs'].includes(sortType) ? $formatnum(datas.seasonData[sortType]) : $formatnum(datas.seasonData[sortType], 0, true)) || '0' }}</view>
       </view>
     </view>
     <icon class="iconfont icon-jinru"></icon>
@@ -24,10 +20,20 @@
 </template>
 
 <script setup lang="ts">
+  import { ref, computed } from 'vue'
+  import { playersOrderOptions } from '@/constant/options'
   import type { playerListItemType } from '@/types/player'
-  defineProps<{
-    datas: playerListItemType
+  import type { orderByType } from '@/types/player'
+  const props = defineProps<{
+    datas: playerListItemType,
+    sortType: orderByType
   }>()
+
+  const label = computed(() => {
+    return playersOrderOptions.find(o => o.value === props.sortType)?.name || ''
+  })
+
+  
 </script>
 
 <style lang="scss" scoped>
@@ -42,16 +48,12 @@
       display: flex;
     }
     .col1 {
-      flex: 0.3;
+      flex: 0.4;
       padding: 0 30rpx;
     }
 
     .col2 {
-      flex: 0.35;
-    }
-
-    .col3 {
-      flex: 0.35;
+      flex: 0.6;
     }
 
     .col1, .col2, .col3 {
@@ -65,7 +67,12 @@
       font-size: 24rpx;
       color: #999;
     }
-    .data {
+    .value-data {
+      font-size: 26rpx;
+      color: #000000;
+      font-weight: bold;
+    }
+    .player-name {
       font-size: 28rpx;
       font-weight: bold;
       color: #333;
@@ -79,4 +86,5 @@
       color: #999;
     }
   }
+  
 </style>

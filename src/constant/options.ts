@@ -230,3 +230,42 @@ export const battleOverviewTableHeaders: OptionsItemType[] = [{
   label: '花费金币估算',
   value: 'cost'
 }]
+
+export const playerCampOptions: OptionsItemType[] = [{
+  label: '全部选手',
+  value: 'all',
+},{
+  label: '只看CTZ',
+  value: 'ctz',
+},{
+  label: '只看MJS',
+  value: 'mjs',
+}]
+
+export const playersOrderOptions: OptionsItemType[] = [
+  {
+    label: '总杀人数优先',
+    name: '赛季总杀人',
+    value: 'k'
+  },{
+    label: '总助攻数优先',
+    name: '赛季总助攻',
+    value: 'a'
+  },{
+    label: '出勤率优先',
+    value: 'attendanceRate',
+    name: '赛季出勤率',
+  },{
+    label: '同秒率优先',
+    value: 'sameSecondRate',
+    name: '赛季平均同秒率',
+  },{
+    label: '每死承伤优先',
+    name: '赛季平均每死承伤',
+    value: 'mscs'
+  },{
+    label: '总花费优先',
+    name: '赛季总花费（估算）',
+    value: 'cost'
+  }
+]

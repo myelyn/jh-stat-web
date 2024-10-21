@@ -8,7 +8,8 @@
     @scrolltolower="onScrollToLower"
   >
     <ListItem v-for="item in battleList" :datas="item" :key="item.id"></ListItem>
-    <up-loadmore v-if="showLoading" :status="loadStatus" />
+    <up-loadmore v-if="showLoading && !isTriggered" :status="loadStatus" />
+
   </scroll-view>
 </template>
 
@@ -21,8 +22,8 @@
 
   const battleList = ref<BattleListType[]>([])
   const isTriggered = ref(false)
-  const loadStatus = ref('loadmore')
   const showLoading = ref(true)
+  const loadStatus = ref('loadmore')
 
   const page = reactive({
     pageNum: 1,
@@ -34,13 +35,17 @@
     page.pageNum = 1
     battleList.value = []
     isTriggered.value = true
-    showLoading.value = false
-    await getBattleList()
-    showLoading.value = true
-    isTriggered.value = false
+    try {
+      await getBattleList()
+      isTriggered.value = false
+    } catch(e) {
+      isTriggered.value = false
+    }
+    
   }
 
-  const onScrollToLower = () => {
+  const onScrollToLower = async () => {
+    showLoading.value = true
     if (page.pageNum >= page.totalPage) {
       loadStatus.value = 'nomore'
       return
@@ -50,13 +55,17 @@
   }
   
   const getBattleList = async () => {
-    loadStatus.value = 'loading'
-    const res = await getBattleListApi(page.pageNum, page.pageSize)
-    page.totalPage = res.result?.totalPage || 0
-    if (res.result?.list) {
-      battleList.value = [...battleList.value, ...res.result.list]
+    try {
+      loadStatus.value = 'loading'
+      const res = await getBattleListApi(page.pageNum, page.pageSize)
+      page.totalPage = res.result?.totalPage || 0
+      showLoading.value = false
+      if (res.result?.list) {
+        battleList.value = [...battleList.value, ...res.result.list]
+      } 
+    } catch(e) {
+      showLoading.value = false
     }
-    loadStatus.value = 'nomore'
   }
 
   onLoad (() => {

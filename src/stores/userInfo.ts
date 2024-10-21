@@ -1,25 +1,26 @@
 import { ref } from 'vue'
 import { defineStore } from 'pinia'
+import type { userInfoType } from '@/types/user'
 
 export const useUserInfoStore = defineStore(
   'userInfo', 
   () => {
-    const userInfo = ref()
+    const userInfo = ref<userInfoType>()
     const token = ref('')
     const setUserInfo = (val: any) => {
-      console.log(val)
       userInfo.value = val
     }
 
     const clearUserInfo = () => {
       userInfo.value = undefined
+      clearToken()
     }
 
     const setToken = (val: string) => {
       token.value = val
     }
 
-    const clearToken = (val: string) => {
+    const clearToken = () => {
       token.value = ''
     }
 
