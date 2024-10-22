@@ -7,3 +7,19 @@ export const getPlayerListApi = () => {
     url: "/player",
   })
 }
+
+export const addPlayerApi = (data: object) => {
+  return http({
+    method: "POST",
+    url: "/player",
+    data
+  })
+}
+
+export const updatePlayerApi = (data: object) => {
+  return http({
+    method: "POST",
+    url: "/player/update",
+    data
+  })
+}

@@ -18,19 +18,24 @@
       </view>
     </view>
     <view class="mine-menu">
+      <view class="menu-item" @tap="handleAboutTap">
+        <icon class="iconfont l-icon icon-guanyuwomen"></icon>
+        <text>关于</text>
+        <icon class="iconfont icon-jinru fs-12"></icon>
+      </view>
       <view url="/pages/secondrate/secondrate" class="menu-item" @tap="handleSecondRateTap">
-        <icon class="iconfont l-icon icon-shezhi"></icon>
+        <icon class="iconfont l-icon icon-calculation"></icon>
         <text>同秒率计算工具</text>
         <icon class="iconfont icon-jinru fs-12"></icon>
       </view>
       <view class="menu-item" @tap="handleCreateBattleTap">
-        <icon class="iconfont l-icon icon-shenfenrenzheng"></icon>
+        <icon class="iconfont l-icon icon-duizhan-jian-tianchong"></icon>
         <text>管理战斗</text>
         <icon class="iconfont icon-jinru fs-12"></icon>
       </view>
-      <view class="menu-item">
-        <icon class="iconfont l-icon icon-guanyuwomen"></icon>
-        <text>关于</text>
+      <view class="menu-item" @tap="handleAddPlayerTap">
+        <icon class="iconfont l-icon icon-renyuan"></icon>
+        <text>添加选手</text>
         <icon class="iconfont icon-jinru fs-12"></icon>
       </view>
       <button v-if="userInfo" @tap="clearUserInfo()" class="button-exit" hover-class="none" type="primary">退出登录</button>
@@ -96,6 +101,24 @@
       console.log(e)
     }
   }
+
+  const handleAddPlayerTap = async () => {
+    try {
+      await verifyAuth()
+      uni.navigateTo({
+        url: '/pages/addplayer/addplayer'
+      })
+    } catch(e) {
+      console.log(e)
+    }
+  }
+
+  const handleAboutTap = () => {
+    uni.navigateTo({
+      url: '/pages/about/about'
+    })
+  }
+
 </script>
 
 <style lang="scss">

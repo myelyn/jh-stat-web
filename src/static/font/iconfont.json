@@ -6,6 +6,13 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "11891779",
+      "name": "calculation",
+      "font_class": "calculation",
+      "unicode": "e66a",
+      "unicode_decimal": 58986
+    },
+    {
       "icon_id": "777843",
       "name": "赞",
       "font_class": "icon",

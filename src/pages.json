@@ -25,6 +25,12 @@
 			}
 		},
 		{
+			"path": "pages/addplayer/addplayer",
+			"style": {
+				"navigationBarTitleText": "添加选手"
+			}
+		},
+		{
 			"path": "pages/mine/mine",
 			"style": {
 				"navigationBarTitleText": "我的",
@@ -57,7 +63,13 @@
 				"navigationStyle": "custom",
 				"navigationBarTextStyle": "white"
 			}
-		}
+		},
+		{
+			"path": "pages/about/about",
+			"style": {
+				"navigationBarTitleText": "关于"
+			}
+		},
 	],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",

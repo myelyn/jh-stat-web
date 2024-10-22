@@ -23,13 +23,25 @@
       <view class="pop-title">赛季数据统计</view>
       <scroll-view  class="pop-bd">
         <view><text class="title">选手姓名：</text><text class="primary-value">{{ popData.name }}</text></view>
-        <view><text class="title">所有角色：</text><text>{{ popData.roles.join('/') }}</text></view>
+        <view>
+          <text class="title">所有角色：</text><text>{{ popData.roles.join('/') }}</text>
+        </view>
         <view 
           v-for="opt in playersOrderOptions">
           <text class="title">{{ opt.name }}：</text>
           <text class="data-value">{{ popData?.seasonData && (['k', 'a', 'cost', 'mscs'].includes(opt.value) ? $formatnum(popData.seasonData[opt.value]) : $formatnum(popData.seasonData[opt.value], 0, true)) || '0' }}</text>
         </view>
+        <view class="add-wrapper" v-if="userInfoStore?.userInfo?.roleId===1 || userInfoStore?.userInfo?.roleId===2" title="选手全部角色，用/分隔" type="line">
+          <view class="add-text">添加角色：</view>
+          <uni-easyinput
+            v-model="newRoles"
+            type="text"
+            placeholder=""
+          />
+          <button @tap="handleAdd" class="confirm-btn" hover-class="none" type="primary" size="mini">确认添加</button>
+        </view>
       </scroll-view>
+      <up-toast ref="uToastRef"></up-toast>
     </view>
   </up-popup>
 </template>
@@ -38,10 +50,14 @@
   import { ref, watch } from 'vue'
   import { orderBy } from 'lodash-es';
   import { onLoad } from '@dcloudio/uni-app';
-  import { getPlayerListApi } from '@/service/player'
+  import { getPlayerListApi, updatePlayerApi } from '@/service/player'
   import type { playerListItemType, orderByType } from '@/types/player'
   import { playerCampOptions, playersOrderOptions } from '@/constant/options'
   import ListItem from './listItem.vue';
+  import { useUserInfoStore } from '@/stores/userInfo'
+
+  const userInfoStore = useUserInfoStore()
+
 
   const playerList = ref<playerListItemType[]>([])
   const isTriggered = ref(false)
@@ -76,7 +92,34 @@
   const showPop = (item: playerListItemType) => {
     popData.value = item
     isShowPop.value = true
-    console.log(popData)
+  }
+
+  // 添加角色
+  const uToastRef = ref()
+  const newRoles = ref('')
+  const handleAdd = async () => {
+    if (!newRoles.value) {
+      return
+    }
+    const params = {
+      id: popData.value.id,
+      roles: popData.value.roles.concat(newRoles.value.split('/')).join(',')
+    }
+    try {
+      await updatePlayerApi(params)
+      uToastRef.value.show({
+        type: 'success',  
+        message: '添加成功'
+      })
+      popData.value.roles = params.roles.split(',')
+      newRoles.value = ''
+      await getPlayerList()
+    } catch(e) {
+      uToastRef.value.show({
+        type: 'error',  
+        message: e.msg
+      })
+    }
   }
 
   onLoad (() => {
@@ -117,6 +160,20 @@
       .data-value {
         -webkit-text-fill-color: #000;
         font-weight: bold;
+      }
+      .add-text {
+        font-size: 26rpx;
+        line-height: 30rpx;
+        -webkit-text-fill-color: $primary-color;
+      }
+    }
+    .add-wrapper {
+      margin: 40rpx 0 20rpx;
+      .confirm-btn, .add-text {
+        margin: 20rpx 0;
+      }
+      .confirm-btn {
+        text-align: center;
       }
     }
   }
