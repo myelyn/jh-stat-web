@@ -29,7 +29,7 @@
         <view class="td2" @click="showDrawer(item)"><text class="player-name">{{ item.playerInfo?.name }}</text><view :class="item.playerInfo.camp">{{ item.playerInfo.camp?.toUpperCase() }}</view><icon class="iconfont icon-jinru"></icon></view>
         <view class="td3">
           <template v-if="curDimension.value==='tags'">
-            <tags class="tags" v-for="text in item.tags" :text="text"></tags>
+            <tags class="tags" v-for="text in item.tags" :text="text" @open="handleTagOpen($event, text)"></tags>
           </template>
           <text v-else>{{ item[curDimension.value] }}</text>
         </view>
@@ -42,6 +42,12 @@
         <playerDetail v-if="curPlayer" :datas="curPlayer"></playerDetail>
       </scroll-view>
     </up-popup>
+    <up-popup v-model:show="isShowTagPop" :customStyle="{background: '#f4f8ff'}">
+      <view class="tag-tips-popup-content">
+        <view class="pop-title">{{ tagPop.title }}</view>
+        <view>{{ tagPop.content }}</view>
+      </view>
+		</up-popup>
   </view>
 </template>
 
@@ -93,6 +99,18 @@
   const setData = () => {
     const orderByField = curDimension.value.value === 'tags' ? 'score' : curDimension.value.value
     rankDatas.value = orderBy(props.datas, [orderByField], ['desc'])
+  }
+
+  // 标签弹窗
+  const isShowTagPop = ref(false)
+  const tagPop = reactive({
+    title: '',
+    content: ''
+  })
+  const handleTagOpen = (content: string, text: string) => {
+    tagPop.content = content
+    tagPop.title = text
+    isShowTagPop.value = true
   }
 
   watch(() => props.datas, () => {

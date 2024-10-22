@@ -32,12 +32,7 @@
     
     <view v-else class="tag" @click="showPop(text)">{{ text }}</view>
 
-    <up-popup v-model:show="isShowPop" :customStyle="{background: '#f4f8ff'}">
-      <view class="tag-tips-popup-content">
-        <view class="pop-title">{{ text }}</view>
-        <view>{{ curText }}</view>
-      </view>
-		</up-popup>
+    
 </template>
 
 <script lang="ts" setup>
@@ -96,11 +91,9 @@
     '手速之王': '同秒率超过50%'
   })
 
-  const isShowPop = ref(false)
-  const curText = ref('')
+  const emits = defineEmits(['open'])
   const showPop = (key: string) => {
-    curText.value = tagMap[key] || '暂无说明'
-    isShowPop.value = true
+    emits('open', tagMap[key] || '暂无说明')
   }
 
 </script>
@@ -208,24 +201,6 @@
     }
     100% {
       background-position: 28000px;
-    }
-  }
-  .tag-tips-popup-content {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    min-height: 300rpx;
-    padding: 0 60rpx;
-    font-size: 26rpx;
-    color: #999;
-    -webkit-text-fill-color: #999;
-    .pop-title {
-      font-size: 30rpx;
-      color: #022202;
-      -webkit-text-fill-color: #022202;
-      font-weight: bold;
-      margin-bottom: 20rpx;
     }
   }
 </style>

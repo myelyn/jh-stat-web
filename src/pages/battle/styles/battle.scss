@@ -214,4 +214,22 @@
       display: inline-flex;
     }
   }
+  .tag-tips-popup-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 300rpx;
+    padding: 0 60rpx;
+    font-size: 26rpx;
+    color: #999;
+    -webkit-text-fill-color: #999;
+    .pop-title {
+      font-size: 30rpx;
+      color: #022202;
+      -webkit-text-fill-color: #022202;
+      font-weight: bold;
+      margin-bottom: 20rpx;
+    }
+  }
 }
