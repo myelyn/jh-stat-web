@@ -49,7 +49,7 @@
 <script setup lang="ts">
   import { ref, watch } from 'vue'
   import { orderBy } from 'lodash-es';
-  import { onLoad } from '@dcloudio/uni-app';
+  import { onShow } from '@dcloudio/uni-app';
   import { getPlayerListApi, updatePlayerApi } from '@/service/player'
   import type { playerListItemType, orderByType } from '@/types/player'
   import { playerCampOptions, playersOrderOptions } from '@/constant/options'
@@ -122,7 +122,7 @@
     }
   }
 
-  onLoad (() => {
+  onShow (() => {
     getPlayerList()
   })
 </script>

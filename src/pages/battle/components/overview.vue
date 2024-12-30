@@ -2,7 +2,7 @@
   <uni-table emptyText="暂无更多数据">
     <!-- 表头行 -->
     <uni-tr>
-      <uni-th width="120"></uni-th>
+      <uni-th width="120">ID：{{ datas.id }}</uni-th>
       <uni-th width="50%">CTZ</uni-th>
       <uni-th width="50%">MJS</uni-th>
     </uni-tr>
@@ -13,6 +13,7 @@
       <uni-td><view :class="['td-data', datas.ctz[h.value] < datas.mjs[h.value] && 'highlight']">{{ datas.mjs[h.value] }}</view></uni-td>
     </uni-tr>
   </uni-table>
+
 </template>
 
 <script lang="ts" setup>

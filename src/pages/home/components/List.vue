@@ -15,7 +15,7 @@
 
 <script setup lang="ts">
   import { ref, reactive } from 'vue'
-  import { onLoad } from '@dcloudio/uni-app';
+  import { onShow } from '@dcloudio/uni-app';
   import { getBattleListApi } from '@/service/home'
   import type { BattleListType } from '@/types/home'
   import ListItem from './ListItem.vue';
@@ -68,7 +68,7 @@
     }
   }
 
-  onLoad (() => {
+  onShow (() => {
     getBattleList()
   })
 </script>
